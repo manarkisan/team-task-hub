@@ -8,17 +8,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button"
+import TaskCards from "./Tasks";
+import Board from "./Boards";
 
 export default function ProjectsArea() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Project</CardTitle>
-        <CardDescription>yhghgj</CardDescription>
+        <CardTitle>Project Name</CardTitle>
+        <CardDescription>Project description</CardDescription>
         <CardAction><Button>New</Button></CardAction>
       </CardHeader>
       <CardContent>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit eligendi, nisi, a dolorum corrupti vel enim fuga, et necessitatibus quaerat dicta quis quos officia quo. Quos aspernatur veritatis accusantium vitae!</p>
+
+        <Board></Board>
+
+        {/* Tasks */}
+        {/* <TaskCards/> */}
+
       </CardContent>
       <CardFooter>
         <p>🦶🏻</p>
