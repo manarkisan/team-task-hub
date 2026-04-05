@@ -1,7 +1,7 @@
-import TaskCards from "./Tasks";
+import TaskBoards, { type TaskBoard } from "./Tasks";
 
 export default function Board() {
-    const boards: typeof TaskBoards[] = [
+    const boards: TaskBoard[] = [
         { name: "To Do:", createdAt: new Date(), tasks: [] },
         { name: "Doing:", createdAt: new Date(), tasks: [] },
         { name: "Done.", createdAt: new Date(), tasks: [] }
@@ -10,7 +10,7 @@ export default function Board() {
     return(
         <>
         {boards.map((board, index) => (
-            <TaskCards key={index} board={board} />
+            <TaskBoards key={index} board={board} />
         ))}
         </>
     )

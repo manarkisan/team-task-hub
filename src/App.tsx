@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
      <Layout>
       <Routes>
-        <Route path="" />
+        <Route path="/" />
       </Routes>
      </Layout>
      </BrowserRouter>
