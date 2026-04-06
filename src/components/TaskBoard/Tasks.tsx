@@ -1,5 +1,5 @@
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
-import SingleTask from "./SingleTask";
+import SingleTask from "../SingleTasks/SingleTask";
 
 export type TaskBoard = {
   name: string;

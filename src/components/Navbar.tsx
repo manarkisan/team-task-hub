@@ -21,6 +21,7 @@ export default function Navbar() {
           New Project <MenubarShortcut>Ctrl N</MenubarShortcut>
         </MenubarItem>
         <MenubarItem>New Task</MenubarItem>
+        <MenubarItem>Open Project...</MenubarItem><MenubarShortcut>Ctrl O</MenubarShortcut>
       </MenubarGroup>
       <MenubarSeparator />
       <MenubarGroup>

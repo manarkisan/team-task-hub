@@ -1,4 +1,4 @@
-import TaskBoards, { type TaskBoard } from "./Tasks";
+import TaskBoards, { type TaskBoard } from "../TaskBoard/Tasks";
 
 export default function Board() {
     const boards: TaskBoard[] = [
