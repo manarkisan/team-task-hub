@@ -1,5 +1,5 @@
 import ProjectsArea from "@/components/ProjectArea/ProjectsArea";
-import Navbar from "./Navbar";
+import Navbar from "./DropDowns/Navbar/Navbar";
 import type { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {

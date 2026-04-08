@@ -6,7 +6,7 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarSeparator,
-} from "../ui/menubar";
+} from "../../ui/menubar";
 
 type TaskMenubarItem = {
   // icon: JSX.Element;

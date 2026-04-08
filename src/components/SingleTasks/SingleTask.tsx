@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import DropDownMenu from "../DropDownMenu/DropDownMenu";
+import DropDownMenu from "../DropDowns/DropDownMenu/DropDownMenu";
 
 export default function SingleTask() {
   return (
