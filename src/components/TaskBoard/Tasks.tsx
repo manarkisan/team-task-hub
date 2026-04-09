@@ -4,7 +4,7 @@ import SingleTask from "../SingleTasks/SingleTask";
 export type TaskBoard = {
   name: string;
   createdAt: Date;
-  tasks: string[];
+  tasks: Task[];
 };
 
 export default function TaskBoards({ board }: { board: TaskBoard }) {

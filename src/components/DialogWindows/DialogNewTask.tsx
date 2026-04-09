@@ -37,26 +37,26 @@ export function TaskName() {
     <>
     <FieldGroup className="max-w-sm">
       <Field>
-        <FieldLabel htmlFor="block-end-input">Input</FieldLabel>
+        <FieldLabel htmlFor="block-end-input">Create New Task</FieldLabel>
         <InputGroup className="h-auto">
-          <InputGroupInput id="block-end-input" placeholder="Enter amount" />
+          <InputGroupInput id="block-end-input" placeholder="Task Name" />
           <InputGroupAddon align="block-end">
-            <InputGroupText>USD</InputGroupText>
+            
           </InputGroupAddon>
         </InputGroup>
         <FieldDescription>Footer positioned below the input.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel htmlFor="block-end-textarea">Textarea</FieldLabel>
+        <FieldLabel htmlFor="block-end-textarea">Task Description</FieldLabel>
         <InputGroup>
           <InputGroupTextarea
             id="block-end-textarea"
-            placeholder="Write a comment..."
+            placeholder="Description..."
           />
           <InputGroupAddon align="block-end">
-            <InputGroupText>0/280</InputGroupText>
+            
             <InputGroupButton variant="default" size="sm" className="ml-auto">
-              Post
+              Create Task
             </InputGroupButton>
           </InputGroupAddon>
         </InputGroup>
