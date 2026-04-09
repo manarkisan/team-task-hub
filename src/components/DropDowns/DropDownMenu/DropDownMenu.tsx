@@ -15,7 +15,7 @@ type TaskMenubarItem = {
   separator?: undefined;
 };
 
-export default function DropDownMenu() {
+export default function DropDownMenu({ onDelete }: { onDelete: () => void }) {
   const taskMenuItems: TaskMenubarItem[] = [
     { 
         // icon: <FaRegEdit />, 
@@ -40,9 +40,10 @@ export default function DropDownMenu() {
                 <MenubarItem
                   key={index}
                   className={`flex items-center gap-1 p-2.5 ${item.className}`}
-                >
+                 onSelect={item.label === "DeleteTask" ? onDelete : undefined}  > 
                   {/* {item.icon} */}
                   <span>{item.label}</span>
+                 
                 </MenubarItem>
               ),
             )}

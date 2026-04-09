@@ -7,22 +7,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import DropDownMenu from "../DropDowns/DropDownMenu/DropDownMenu";
+import { useTaskStore } from "@/features/tasks/store/taskStore";
+import type { Task } from '@/features/tasks/types';
 
-export default function SingleTask() {
+export default function SingleTask({ task }: { task: Task}) {
+  const removeTask = useTaskStore((state) => state.removeTask)
   return (
     <>
       <Card>
         <CardHeader>
           <CardTitle>
-            <p>One task to rule them all...</p>
+            {task.title}
           </CardTitle>
           <CardAction>
-            <DropDownMenu />
+            <DropDownMenu onDelete={() => removeTask(task.id)} />
           </CardAction>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            <p>describsion</p>
+            {task.description}
           </CardDescription>
         </CardContent>
       </Card>

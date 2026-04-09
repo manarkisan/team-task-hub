@@ -1,36 +1,24 @@
 import { create } from 'zustand'
+import type { Task } from '../types';
 
 interface TaskState {
-    tasks: SingleTask[];
-    addTask: (product: Product) => void;
-    updateTask: (productId: string, quantity: number) => void;
-    removeTask: (productId: string) => void;
+    tasks: Task[];
+    addTask: (task: Task) => void;
+    updateTask: (taskId: string, updates: Partial<Task>) => void;
+    removeTask: (taskId: string) => void;
 }
 
-const taskStore = create<>((set) =>({
+export const useTaskStore = create<TaskState>((set) =>({
     tasks: [],
     addTask: (task) =>
-        set((state) => {
-            const existing = state.tasks.find((t) => t.product.id === product.id);
-      if (existing) {
-        return {
-          items: state.tasks.map((t) =>
-            t.product.id === product.id
-              ? { ...t, quantity: t.quantity + 1 }
-              : t,
-          ),
-        };
-      }
-      return { tasks: [...state.tasks, { product, quantity: 1 }] };
-        }),
-         updateTask: (productId, quantity) =>
+        set((state) => ({ tasks: [...state.tasks, task] })),
+         updateTask: (taskId, updates) =>
     set((state) => ({
       tasks: state.tasks
-        .map((t) => (t.product.id === productId ? { ...t, quantity } : t))
-        .filter((t) => t.quantity > 0),
+        .map((t) => (t.id === taskId ? { ...t, updates } : t))
     })),
-  removeItem: (productId) =>
+  removeTask: (taskId) =>
     set((state) => ({
-      tasks: state.tasks.filter((t) => t.product.id !== productId),
+      tasks: state.tasks.filter((t) => t.id !== taskId),
     })),
 }))
