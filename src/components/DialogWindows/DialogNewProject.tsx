@@ -10,11 +10,11 @@ import { Button } from "../ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "../ui/field";
 import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea, InputGroupButton } from "../ui/input-group";
 import { useState } from "react";
-import { useTaskStore } from "@/features/tasks/store/taskStore";
-import { TaskSchema } from "@/features/tasks/types";
+import { useProjectStore } from "@/features/projects/store/projectStore";
+import { ProjectSchema } from "@/features/projects/types";
 
 
-export default function DialogNewTask({ open, onOpenChange }: {
+export default function DialogNewProject({ open, onOpenChange }: {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
@@ -26,14 +26,14 @@ export default function DialogNewTask({ open, onOpenChange }: {
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button>New Task</Button>
+          <Button>New Project</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>CREATE NEW TASK</DialogTitle>
-            <DialogDescription>Create a new task here.</DialogDescription>
+            <DialogTitle>CREATE NEW Project</DialogTitle>
+            <DialogDescription>Create a new Project here.</DialogDescription>
           </DialogHeader>
-          <TaskName onSuccess={() => setIsOpen(false)}/>
+          <ProjectName onSuccess={() => setIsOpen(false)}/>
         </DialogContent>
        
       </Dialog>
@@ -41,14 +41,14 @@ export default function DialogNewTask({ open, onOpenChange }: {
   );
 }
 
-export function TaskName({ onSuccess }: { onSuccess: () => void }) {
-   const addTask = useTaskStore((state) => state.addTask);
+export function ProjectName({ onSuccess }: { onSuccess: () => void }) {
+   const addProject = useProjectStore((state) => state.addProject);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   function handleSubmit() {
-    const result = TaskSchema.safeParse({
+    const result = ProjectSchema.safeParse({
       id: crypto.randomUUID(),
       title,
       description,
@@ -60,16 +60,16 @@ export function TaskName({ onSuccess }: { onSuccess: () => void }) {
       return;
     }
 
-    addTask(result.data);
+    addProject(result.data);
     onSuccess();
   }
   return (
     <>
     <FieldGroup className="max-w-sm">
       <Field>
-        <FieldLabel htmlFor="block-end-input">Create New Task</FieldLabel>
+        <FieldLabel htmlFor="block-end-input">Create New Project</FieldLabel>
         <InputGroup className="h-auto">
-          <InputGroupInput id="block-end-input" placeholder="Task Name" value={title} onChange={(e) => setTitle(e.target.value)}/>
+          <InputGroupInput id="block-end-input" placeholder="Project Name" value={title} onChange={(e) => setTitle(e.target.value)}/>
           <InputGroupAddon align="block-end">
             
           </InputGroupAddon>
@@ -78,7 +78,7 @@ export function TaskName({ onSuccess }: { onSuccess: () => void }) {
         <FieldDescription>Footer positioned below the input.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel htmlFor="block-end-textarea">Task Description</FieldLabel>
+        <FieldLabel htmlFor="block-end-textarea">Project Description</FieldLabel>
         <InputGroup>
           <InputGroupTextarea
             id="block-end-textarea"
@@ -89,7 +89,7 @@ export function TaskName({ onSuccess }: { onSuccess: () => void }) {
           <InputGroupAddon align="block-end">
             
             <InputGroupButton variant="default" size="sm" className="ml-auto" onClick={handleSubmit}>
-              Create Task
+              Create Project
             </InputGroupButton>
           </InputGroupAddon>
         </InputGroup>

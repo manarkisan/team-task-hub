@@ -15,7 +15,7 @@ export const useProjectStore = create<ProjectState>((set) =>({
          updateProject: (projectId, updates) =>
     set((state) => ({
       projects: state.projects
-        .map((p) => (p.id === projectId ? { ...p, updates } : p))
+        .map((p) => (p.id === projectId ? { ...p, ...updates } : p))
     })),
   removeProject: (projectId) =>
     set((state) => ({

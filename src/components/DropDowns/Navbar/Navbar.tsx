@@ -1,5 +1,5 @@
+import DialogNewProject from "@/components/DialogWindows/DialogNewProject";
 import DialogNewTask from "@/components/DialogWindows/DialogNewTask";
-import type { TaskBoard } from "@/components/TaskBoard/Tasks";
 import {
   Menubar,
   MenubarContent,
@@ -16,23 +16,23 @@ import { useState } from "react";
 
 
 export default function Navbar() {
-// const [selectedProject, setSelectedProject] = useState<TaskBoard>(projects[0]);
+const [taskOpen, setTaskOpen] = useState(false);
+const [projectOpen, setProjectOpen] = useState(false);
 
   return (
-    <Menubar>
+     <><Menubar><DialogNewTask open={taskOpen} onOpenChange={setTaskOpen} /><DialogNewProject open={projectOpen} onOpenChange={setProjectOpen} />
       <MenubarMenu>
         <MenubarTrigger>New...</MenubarTrigger>
         <MenubarContent>
           <MenubarGroup>
-            <MenubarItem>
+            <MenubarItem onSelect={() => setProjectOpen(true)}>
               New Project <MenubarShortcut>Ctrl N</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem onSelect={() => <DialogNewTask/>}>New Task</MenubarItem>
-            <MenubarItem 
-            // selectedProject={selectedProject}
-            // setSelectedProject={setSelectedProject} 
-            onSelect={() => 
-              console.log("Now choose a project!")}>
+
+            <MenubarItem onSelect={() => setTaskOpen(true)}>New Task</MenubarItem>
+            <MenubarItem
+
+              onSelect={() => console.log("Now choose a project!")}>
               Open Project...<MenubarShortcut>Ctrl O</MenubarShortcut>
             </MenubarItem>
           </MenubarGroup>
@@ -43,6 +43,6 @@ export default function Navbar() {
           </MenubarGroup>
         </MenubarContent>
       </MenubarMenu>
-    </Menubar>
+    </Menubar></>
   );
 }

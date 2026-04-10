@@ -7,7 +7,13 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <div className="flex justify-center p-1"><h1>TEAM TASK HUB</h1></div>
       <Navbar/>
-      <ProjectsArea/>
+      <ProjectsArea board={{
+              name: "",
+              projects: [],
+              status: "",
+              id: "",
+              description: undefined
+          }}/>
       <div>{children}</div>
     </>
   );
