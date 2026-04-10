@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "../ui/field";
-import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupText, InputGroupTextarea, InputGroupButton } from "../ui/input-group";
+import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea, InputGroupButton } from "../ui/input-group";
 import { useState } from "react";
 import { useTaskStore } from "@/features/tasks/store/taskStore";
 import { TaskSchema } from "@/features/tasks/types";

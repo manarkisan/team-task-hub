@@ -1,3 +1,4 @@
+import DialogNewTask from "@/components/DialogWindows/DialogNewTask";
 import type { TaskBoard } from "@/components/TaskBoard/Tasks";
 import {
   Menubar,
@@ -26,7 +27,7 @@ export default function Navbar() {
             <MenubarItem>
               New Project <MenubarShortcut>Ctrl N</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem>New Task</MenubarItem>
+            <MenubarItem onSelect={() => <DialogNewTask/>}>New Task</MenubarItem>
             <MenubarItem 
             // selectedProject={selectedProject}
             // setSelectedProject={setSelectedProject} 
