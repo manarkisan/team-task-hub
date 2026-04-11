@@ -12,12 +12,19 @@ import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea, Input
 import { useState } from "react";
 import { useTaskStore } from "@/features/tasks/store/taskStore";
 import { TaskSchema } from "@/features/tasks/types";
+import type { Project } from "@/features/projects/types";
 
-
-export default function DialogNewTask({ open, onOpenChange }: {
+type DialogNewTaskProps = {
+  project: Project;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-}) {
+};
+
+export default function DialogNewTask({
+  project,
+  open,
+  onOpenChange,
+}: DialogNewTaskProps) {
 
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = open ?? internalOpen;
@@ -33,7 +40,7 @@ export default function DialogNewTask({ open, onOpenChange }: {
             <DialogTitle>CREATE NEW TASK</DialogTitle>
             <DialogDescription>Create a new task here.</DialogDescription>
           </DialogHeader>
-          <TaskName onSuccess={() => setIsOpen(false)}/>
+          <TaskName onSuccess={() => setIsOpen(false)} project={project}/>
         </DialogContent>
        
       </Dialog>
@@ -41,7 +48,13 @@ export default function DialogNewTask({ open, onOpenChange }: {
   );
 }
 
-export function TaskName({ onSuccess }: { onSuccess: () => void }) {
+export function TaskName({
+  onSuccess,
+  project,
+}: {
+  onSuccess: () => void;
+  project: Project;
+}) {
    const addTask = useTaskStore((state) => state.addTask);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -53,6 +66,7 @@ export function TaskName({ onSuccess }: { onSuccess: () => void }) {
       title,
       description,
       status: 'todo',
+      projectId: project.id
     });
 
     if (!result.success) {

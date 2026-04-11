@@ -1,5 +1,4 @@
 import DialogNewProject from "@/components/DialogWindows/DialogNewProject";
-import DialogNewTask from "@/components/DialogWindows/DialogNewTask";
 import {
   Menubar,
   MenubarContent,
@@ -20,7 +19,7 @@ const [taskOpen, setTaskOpen] = useState(false);
 const [projectOpen, setProjectOpen] = useState(false);
 
   return (
-     <><Menubar><DialogNewTask open={taskOpen} onOpenChange={setTaskOpen} /><DialogNewProject open={projectOpen} onOpenChange={setProjectOpen} />
+     <><Menubar><DialogNewProject open={projectOpen} onOpenChange={setProjectOpen} />
       <MenubarMenu>
         <MenubarTrigger>New...</MenubarTrigger>
         <MenubarContent>

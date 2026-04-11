@@ -28,13 +28,14 @@ export default function ProjectsArea() {
         <CardTitle>Projects</CardTitle>
         <CardDescription>sdfasdf</CardDescription>
         <CardAction>
-          <DialogNewTask />
+         
         </CardAction>
       </CardHeader>
       <CardContent>
         {projects.map((project) => (
           <div key={project.id}>
             <h3>{project.title}</h3>
+             <DialogNewTask project={project} />
             <Board project={project} />
           </div>
         ))}

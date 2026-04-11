@@ -5,7 +5,7 @@ export const TaskSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   description: z.string().optional(),
   status: z.enum(['todo', 'doing', 'done']),
-  projectId: z.string().optional(),
+  projectId: z.string(),
 });
 
 export type Task = z.infer<typeof TaskSchema>;

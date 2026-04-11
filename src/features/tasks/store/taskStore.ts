@@ -2,10 +2,10 @@ import { create } from 'zustand'
 import type { Task } from '../types';
 
 interface TaskState {
-    tasks: Task[];
-    addTask: (task: Task) => void;
-    updateTask: (taskId: string, updates: Partial<Task>) => void;
-    removeTask: (taskId: string) => void;
+    tasks: Task[],
+    addTask: (task: Task) => void,
+    updateTask: (taskId: string, updates: Partial<Task>) => void,
+    removeTask: (taskId: string) => void,
 }
 
 export const useTaskStore = create<TaskState>((set) =>({

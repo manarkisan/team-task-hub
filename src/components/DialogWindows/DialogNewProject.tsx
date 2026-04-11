@@ -51,12 +51,14 @@ export default function DialogNewProject({
   function handleSubmit() {
     const result = ProjectSchema.safeParse({
       id: crypto.randomUUID(),
-      title: title,
-      description,
+      title: title ?? "",
+      description: description ?? "",
       createdAt: new Date().toISOString(),
+      
     });
 
     if (!result.success) {
+        console.log(result.error)
       setError(result.error.issues[0].message);
       return;
     }
