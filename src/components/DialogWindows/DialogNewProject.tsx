@@ -4,47 +4,48 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "../ui/field";
-import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea, InputGroupButton } from "../ui/input-group";
+import {
+  InputGroup,
+  InputGroupInput,
+  InputGroupAddon,
+  InputGroupTextarea,
+  InputGroupButton,
+} from "../ui/input-group";
 import { useState } from "react";
 import { useProjectStore } from "@/features/projects/store/projectStore";
 import { ProjectSchema } from "@/features/projects/types";
 
-
-export default function DialogNewProject({ open, onOpenChange }: {
+export default function DialogNewProject({
+  open,
+  onOpenChange,
+}: {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
-
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = open ?? internalOpen;
   const setIsOpen = onOpenChange ?? setInternalOpen;
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
-          <Button>New Project</Button>
-        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>CREATE NEW Project</DialogTitle>
             <DialogDescription>Create a new Project here.</DialogDescription>
           </DialogHeader>
-          <ProjectName onSuccess={() => setIsOpen(false)}/>
+          <ProjectName onSuccess={() => setIsOpen(false)} />
         </DialogContent>
-       
       </Dialog>
     </>
   );
 }
 
-export function ProjectName({ onSuccess }: { onSuccess: () => void }) {
-   const addProject = useProjectStore((state) => state.addProject);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+ function ProjectName({ onSuccess }: { onSuccess: () => void }) {
+  const addProject = useProjectStore((state) => state.addProject);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function handleSubmit() {
@@ -52,7 +53,7 @@ export function ProjectName({ onSuccess }: { onSuccess: () => void }) {
       id: crypto.randomUUID(),
       title,
       description,
-      status: 'todo',
+      createdAt: new Date().toISOString(),
     });
 
     if (!result.success) {
@@ -65,39 +66,50 @@ export function ProjectName({ onSuccess }: { onSuccess: () => void }) {
   }
   return (
     <>
-    <FieldGroup className="max-w-sm">
-      <Field>
-        <FieldLabel htmlFor="block-end-input">Create New Project</FieldLabel>
-        <InputGroup className="h-auto">
-          <InputGroupInput id="block-end-input" placeholder="Project Name" value={title} onChange={(e) => setTitle(e.target.value)}/>
-          <InputGroupAddon align="block-end">
-            
-          </InputGroupAddon>
-        </InputGroup>
-        {error && <p className="text-destructive text-sm">{error}</p>}
-        <FieldDescription>Footer positioned below the input.</FieldDescription>
-      </Field>
-      <Field>
-        <FieldLabel htmlFor="block-end-textarea">Project Description</FieldLabel>
-        <InputGroup>
-          <InputGroupTextarea
-            id="block-end-textarea"
-            placeholder="Description..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <InputGroupAddon align="block-end">
-            
-            <InputGroupButton variant="default" size="sm" className="ml-auto" onClick={handleSubmit}>
-              Create Project
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
-        <FieldDescription>
-          Footer positioned below the textarea.
-        </FieldDescription>
-      </Field>
-    </FieldGroup>
+      <FieldGroup className="max-w-sm">
+        <Field>
+          <FieldLabel htmlFor="block-end-input">Create New Project</FieldLabel>
+          <InputGroup className="h-auto">
+            <InputGroupInput
+              id="block-end-input"
+              placeholder="Project Name"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <InputGroupAddon align="block-end"></InputGroupAddon>
+          </InputGroup>
+          {error && <p className="text-destructive text-sm">{error}</p>}
+          <FieldDescription>
+            Footer positioned below the input.
+          </FieldDescription>
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="block-end-textarea">
+            Project Description
+          </FieldLabel>
+          <InputGroup>
+            <InputGroupTextarea
+              id="block-end-textarea"
+              placeholder="Description..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <InputGroupAddon align="block-end">
+              <InputGroupButton
+                variant="default"
+                size="sm"
+                className="ml-auto"
+                onClick={handleSubmit}
+              >
+                Create Project
+              </InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
+          <FieldDescription>
+            Footer positioned below the textarea.
+          </FieldDescription>
+        </Field>
+      </FieldGroup>
     </>
   );
 }

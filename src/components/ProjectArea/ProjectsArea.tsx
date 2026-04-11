@@ -9,6 +9,7 @@ import {
 import Board from "../Board/Boards";
 import DialogNewTask from "../DialogWindows/DialogNewTask";
 import type { Project } from "@/features/projects/types";
+import { useProjectStore } from "@/features/projects/store/projectStore";
 
 export type ProjectBoard = {
   name: string;
@@ -16,27 +17,27 @@ export type ProjectBoard = {
   status: string;
   id: string;
   description?: string | undefined;
-}
+};
 
-export default function ProjectsArea({ board } : { board: ProjectBoard}) {
-  const { name: boardName, projects } = board;
-  
+export default function ProjectsArea() {
+  const projects = useProjectStore((state) => state.projects);
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{boardName}</CardTitle>
+        <CardTitle>Projects</CardTitle>
         <CardDescription>sdfasdf</CardDescription>
         <CardAction>
           <DialogNewTask />
         </CardAction>
       </CardHeader>
       <CardContent>
-        <div>
-          {projects.map((project) => (
-            <Board key={project.id} project={project} />
-          ))}
-        </div>
-       
+        {projects.map((project) => (
+          <div key={project.id}>
+            <h3>{project.name}</h3>
+            <Board project={project} />
+          </div>
+        ))}
       </CardContent>
     </Card>
   );
