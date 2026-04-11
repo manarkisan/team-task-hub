@@ -12,7 +12,7 @@ import type { Project } from "@/features/projects/types";
 import { useProjectStore } from "@/features/projects/store/projectStore";
 
 export type ProjectBoard = {
-  name: string;
+  title: string;
   projects: Project[];
   status: string;
   id: string;
@@ -34,7 +34,7 @@ export default function ProjectsArea() {
       <CardContent>
         {projects.map((project) => (
           <div key={project.id}>
-            <h3>{project.name}</h3>
+            <h3>{project.title}</h3>
             <Board project={project} />
           </div>
         ))}

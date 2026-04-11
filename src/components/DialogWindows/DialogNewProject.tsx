@@ -51,7 +51,7 @@ export default function DialogNewProject({
   function handleSubmit() {
     const result = ProjectSchema.safeParse({
       id: crypto.randomUUID(),
-      title,
+      title: title,
       description,
       createdAt: new Date().toISOString(),
     });
@@ -72,7 +72,7 @@ export default function DialogNewProject({
           <InputGroup className="h-auto">
             <InputGroupInput
               id="block-end-input"
-              placeholder="Project Name"
+              placeholder="Project Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
