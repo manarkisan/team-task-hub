@@ -34,9 +34,9 @@ export default function SingleTask({ task }: { task: Task }) {
         />
       )}
 
-      <Card>
+      <Card className="bg-emerald-50 shadow-2xl m-2">
         <CardHeader>
-          <CardTitle>{task.title}</CardTitle>
+          <CardTitle className="flex justify-center text-lg text-emerald-700">{task.title}</CardTitle>
           <CardAction>
             <DropDownMenu
               onDelete={() => removeTask(task.id)}
@@ -45,8 +45,8 @@ export default function SingleTask({ task }: { task: Task }) {
           </CardAction>
         </CardHeader>
         <CardContent>
-          <CardDescription>{task.description}</CardDescription>
-          <select value={task.status}
+          <CardDescription className="text-base text-emerald-800">{task.description}</CardDescription>
+          <select className="flex flex-row-reverse" value={task.status}
           onChange={(e) => updateTask(task.id, { status: e.target.value as 'todo' | 'doing' | 'done'})}>
             <option value='todo'>To Do</option>
             <option value='doing'>Doing</option>

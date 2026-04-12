@@ -3,6 +3,7 @@ import {
   CardAction,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -40,19 +41,20 @@ const tasks = activeProject
   if (!activeProject) return <Dashboard />;
 
   return (
-    <Card>
+    <Card className="bg-cyan-200 max-w-4xl flex mx-auto">
       <CardHeader>
         <CardTitle>{activeProject.title}</CardTitle>
         <CardDescription>{activeProject.description}</CardDescription>
         <CardAction>
-          <ProgressBar percentage={percentage} />
+          <ProgressBar  percentage={percentage} />
           <DialogNewTask project={activeProject} />
           <Button onClick={() => removeProject(activeProject.id)}>Delete Project</Button>
         </CardAction>
       </CardHeader>
-      <CardContent>
-        <Board project={activeProject} />
+      <CardContent >
+        <Board  project={activeProject} />
       </CardContent>
+      <CardFooter> &copy;  <a href="mailto:cerestungl@gmail.com"> Inga G. Vald. 2026 🦶🏻</a></CardFooter>
     </Card>
   );
 }

@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter >
      <Layout >
       <Routes>
         <Route path="/" element={''}/>

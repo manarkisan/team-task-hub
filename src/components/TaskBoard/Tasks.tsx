@@ -14,7 +14,7 @@ export default function TaskBoards({ board }: { board: TaskBoard }) {
   const numberTasks = tasks.length;
 
   return (
-    <Card>
+    <Card className="bg-emerald-100 m-2 shadow-lg shadow-cyan-600">
       <CardTitle>{boardName}</CardTitle>
       <CardDescription>{numberTasks}</CardDescription>
       <div>

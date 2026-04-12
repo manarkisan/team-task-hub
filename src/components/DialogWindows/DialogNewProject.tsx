@@ -16,7 +16,6 @@ import {
 import { useState } from "react";
 import { useProjectStore } from "@/features/projects/store/projectStore";
 import { ProjectSchema } from "@/features/projects/types";
-import { set } from "zod";
 
 export default function DialogNewProject({
   open,
