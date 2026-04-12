@@ -8,7 +8,6 @@ import {
 } from "../../ui/menubar";
 
 type TaskMenubarItem = {
-  
   label: string;
   className: string;
   separator?: undefined;
@@ -30,7 +29,7 @@ export default function DropDownMenu({ onDelete }: { onDelete: () => void }) {
         <MenubarMenu>
           <MenubarTrigger>...</MenubarTrigger>
           <MenubarContent>
-            {" "}
+            
             {taskMenuItems.map((item, index) =>
               item.separator ? (
                 <MenubarSeparator key={index} />
@@ -38,7 +37,7 @@ export default function DropDownMenu({ onDelete }: { onDelete: () => void }) {
                 <MenubarItem
                   key={index}
                   className={`flex items-center gap-1 p-2.5 ${item.className}`}
-                 onSelect={item.label === "DeleteTask" ? onDelete : undefined}  > 
+                 onSelect={item.label === "Delete Task" ? onDelete : undefined}  > 
                   <span>{item.label}</span>
                  
                 </MenubarItem>

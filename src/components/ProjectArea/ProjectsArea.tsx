@@ -10,6 +10,7 @@ import Board from "../Board/Boards";
 import DialogNewTask from "../DialogWindows/DialogNewTask";
 import type { Project } from "@/features/projects/types";
 import { useProjectStore } from "@/features/projects/store/projectStore";
+import { Button } from "../ui/button";
 
 export type ProjectBoard = {
   title: string;
@@ -21,6 +22,7 @@ export type ProjectBoard = {
 
 export default function ProjectsArea() {
   const projects = useProjectStore((state) => state.projects);
+  const removeProject = useProjectStore((state) => state.removeProject);
 
   return (
     <Card>
@@ -36,6 +38,7 @@ export default function ProjectsArea() {
           <div key={project.id}>
             <h3>{project.title}</h3>
              <DialogNewTask project={project} />
+             <Button onClick={() => removeProject(project.id)}>Delete Project</Button>
             <Board project={project} />
           </div>
         ))}

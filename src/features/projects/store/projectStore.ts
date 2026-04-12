@@ -20,7 +20,6 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
       saveToStorage(STORAGE_KEY, updated);
       return { projects: updated };
     }),
-    
   updateProject: (id, updates) =>
     set((state) => {
       const updated = state.projects.map((p) =>
