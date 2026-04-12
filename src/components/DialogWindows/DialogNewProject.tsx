@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { useProjectStore } from "@/features/projects/store/projectStore";
 import { ProjectSchema } from "@/features/projects/types";
+import { set } from "zod";
 
 export default function DialogNewProject({
   open,
@@ -47,6 +48,7 @@ export default function DialogNewProject({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const setActiveProject = useProjectStore((s) => s.setActiveProject);
 
   function handleSubmit() {
     const result = ProjectSchema.safeParse({
@@ -64,6 +66,7 @@ export default function DialogNewProject({
     }
 
     addProject(result.data);
+    setActiveProject(result.data.id);
     onSuccess();
   }
   return (

@@ -26,39 +26,33 @@ export type ProjectBoard = {
 export default function ProjectsArea() {
   const projects = useProjectStore((state) => state.projects);
   const removeProject = useProjectStore((state) => state.removeProject);
-
   const activeProjectId = useProjectStore((state) => state.activeProjectId);
-const setActiveProject = useProjectStore((state) => state.setActiveProject);
-const activeProject = projects.find((p) => p.id === activeProjectId);
+  const activeProject = projects.find((p) => p.id === activeProjectId);
 
-const tasks = useTaskStore((state) => state.tasks.filter((t) => t.projectId === activeProject.id));
-const done = tasks.filter((t) => t.status === 'done').length;
-const percentage = tasks.length === 0 ? 0 : Math.round((done / tasks.length) * 100);
+  const allTasks = useTaskStore((state) => state.tasks ?? []);
 
-if (!activeProject) {
+const tasks = activeProject
+  ? allTasks.filter((t) => t.projectId === activeProject.id)
+  : [];
+  const done = tasks.filter((t) => t.status === 'done').length;
+  const percentage = tasks.length === 0 ? 0 : Math.round((done / tasks.length) * 100);
+
+  if (!activeProject) return <Dashboard />;
+
   return (
-  <Dashboard/>
+    <Card>
+      <CardHeader>
+        <CardTitle>{activeProject.title}</CardTitle>
+        <CardDescription>{activeProject.description}</CardDescription>
+        <CardAction>
+          <ProgressBar percentage={percentage} />
+          <DialogNewTask project={activeProject} />
+          <Button onClick={() => removeProject(activeProject.id)}>Delete Project</Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <Board project={activeProject} />
+      </CardContent>
+    </Card>
   );
-}
-
-return (
-  <Card>
-    <CardHeader>
-      <CardTitle>{activeProject.title}</CardTitle>
-      <CardDescription>{activeProject.description}</CardDescription>
-      <CardAction>
-        <DialogNewTask project={activeProject} />
-        <Button onClick={() => removeProject(activeProject.id)}>Delete Project</Button>
-      </CardAction>
-    </CardHeader>
-    <CardAction>
-  <ProgressBar percentage={percentage} />
-  <DialogNewTask project={activeProject} />
-  <Button onClick={() => removeProject(activeProject.id)}>Delete Project</Button>
-</CardAction>
-    <CardContent>
-      <Board project={activeProject} />
-    </CardContent>
-  </Card>
-);
 }

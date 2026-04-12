@@ -1,6 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { useProjectStore } from "@/features/projects/store/projectStore";
-import type { Project } from "@/features/projects/types";
 
 export default function Dashboard() {
   const projects = useProjectStore((state) => state.projects);
