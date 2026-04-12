@@ -1,5 +1,3 @@
-import { ProjectSchema } from "@/features/projects/types";
-import { TaskSchema } from "@/features/tasks/types";
 
 export function loadFromStorage<T>(
   key: string,

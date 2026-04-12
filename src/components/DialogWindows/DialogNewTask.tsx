@@ -11,19 +11,21 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from "../ui/field";
 import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea, InputGroupButton } from "../ui/input-group";
 import { useState } from "react";
 import { useTaskStore } from "@/features/tasks/store/taskStore";
-import { TaskSchema } from "@/features/tasks/types";
+import { TaskSchema, type Task } from "@/features/tasks/types";
 import type { Project } from "@/features/projects/types";
 
 type DialogNewTaskProps = {
   project: Project;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  initalData?: Task;
 };
 
 export default function DialogNewTask({
   project,
   open,
   onOpenChange,
+  initalData,
 }: DialogNewTaskProps) {
 
   const [internalOpen, setInternalOpen] = useState(false);
@@ -40,7 +42,7 @@ export default function DialogNewTask({
             <DialogTitle>CREATE NEW TASK</DialogTitle>
             <DialogDescription>Create a new task here.</DialogDescription>
           </DialogHeader>
-          <TaskName onSuccess={() => setIsOpen(false)} project={project}/>
+          <TaskName onSuccess={() => setIsOpen(false)} project={project} initialData={initalData}/>
         </DialogContent>
        
       </Dialog>
@@ -51,16 +53,24 @@ export default function DialogNewTask({
 export function TaskName({
   onSuccess,
   project,
+  initialData,
 }: {
   onSuccess: () => void;
   project: Project;
+  initialData?: Task;
 }) {
    const addTask = useTaskStore((state) => state.addTask);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+   const updateTask = useTaskStore((state) => state.updateTask)
+  const [title, setTitle] = useState(initialData?.title ?? '');
+  const [description, setDescription] = useState(initialData?.title ?? '');
   const [error, setError] = useState<string | null>(null);
 
   function handleSubmit() {
+    if (initialData) {
+      updateTask(initialData.id, { title, description });
+      onSuccess();
+      return;
+    }
     const result = TaskSchema.safeParse({
       id: crypto.randomUUID(),
       title,

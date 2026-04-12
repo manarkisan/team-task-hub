@@ -9,10 +9,10 @@ function App() {
   return (
     <>
     <BrowserRouter>
-     <Layout children={undefined}>
-      {/* <Routes>
-        <Route path="/" element={<Layout children={undefined} />}/>
-      </Routes> */}
+     <Layout >
+      <Routes>
+        {/* <Route path="/" element={ children={undefined} }/> */}
+      </Routes>
      </Layout>
      </BrowserRouter>
     </>

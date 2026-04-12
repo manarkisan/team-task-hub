@@ -7,13 +7,16 @@ const initialProjects = loadFromStorage<Project>(STORAGE_KEY, ProjectSchema);
 
 interface ProjectState {
   projects: Project[];
+  activeProjectId: string | null;
   addProject: (project: Project) => void;
   updateProject: (projectId: string, updates: Partial<Project>) => void;
   removeProject: (projectId: string) => void;
+  setActiveProject: (id: string | null) => void;
 }
 
 export const useProjectStore = create<ProjectState>((set, get) => ({
   projects: initialProjects,
+  activeProjectId: null,
   addProject: (project) =>
     set((state) => {
       const updated = [...state.projects, project];
@@ -35,4 +38,5 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
       saveToStorage(STORAGE_KEY, updated);
       return { projects: updated };
     }),
+     setActiveProject: (id) => set({ activeProjectId: id }),
 }));
