@@ -11,6 +11,7 @@ import DialogNewTask from "../DialogWindows/DialogNewTask";
 import type { Project } from "@/features/projects/types";
 import { useProjectStore } from "@/features/projects/store/projectStore";
 import { Button } from "../ui/button";
+import Dashboard from "../Board/Dashboard";
 
 export type ProjectBoard = {
   title: string;
@@ -30,37 +31,23 @@ const activeProject = projects.find((p) => p.id === activeProjectId);
 
 if (!activeProject) {
   return (
-    <Card>
-      <CardHeader><CardTitle>Choose a Project</CardTitle></CardHeader>
-      <CardContent>
-        {projects.length === 0 && <p>No projects yet. Create one from the menu.</p>}
-        {projects.map((p) => (
-          <button key={p.id} onClick={() => setActiveProject(p.id)}>{p.title}</button>
-        ))}
-      </CardContent>
-    </Card>
+  <Dashboard/>
   );
 }
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{activeProject.title}</CardTitle>
-        <CardDescription>sdfasdf</CardDescription>
-        <CardAction>
-         
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        {projects.map((project) => (
-          <div key={project.id}>
-            <h3>{project.title}</h3>
-             <DialogNewTask project={project} />
-             <Button onClick={() => removeProject(project.id)}>Delete Project</Button>
-            <Board project={activeProject} />
-          </div>
-        ))}
-      </CardContent>
-    </Card>
-  );
+return (
+  <Card>
+    <CardHeader>
+      <CardTitle>{activeProject.title}</CardTitle>
+      <CardDescription>{activeProject.description}</CardDescription>
+      <CardAction>
+        <DialogNewTask project={activeProject} />
+        <Button onClick={() => removeProject(activeProject.id)}>Delete Project</Button>
+      </CardAction>
+    </CardHeader>
+    <CardContent>
+      <Board project={activeProject} />
+    </CardContent>
+  </Card>
+);
 }

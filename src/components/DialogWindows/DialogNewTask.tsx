@@ -18,35 +18,35 @@ type DialogNewTaskProps = {
   project: Project;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  initalData?: Task;
+  initialData?: Task;
 };
 
 export default function DialogNewTask({
   project,
   open,
   onOpenChange,
-  initalData,
+  initialData,
 }: DialogNewTaskProps) {
-
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = open ?? internalOpen;
   const setIsOpen = onOpenChange ?? setInternalOpen;
+  const isControlled = open !== undefined;
+
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      {!isControlled && (
         <DialogTrigger asChild>
           <Button>New Task</Button>
         </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>CREATE NEW TASK</DialogTitle>
-            <DialogDescription>Create a new task here.</DialogDescription>
-          </DialogHeader>
-          <TaskName onSuccess={() => setIsOpen(false)} project={project} initialData={initalData}/>
-        </DialogContent>
-       
-      </Dialog>
-    </>
+      )}
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{initialData ? 'Edit Task' : 'Create New Task'}</DialogTitle>
+          <DialogDescription>{initialData ? 'Edit your task.' : 'Create a new task here.'}</DialogDescription>
+        </DialogHeader>
+        <TaskName onSuccess={() => setIsOpen(false)} project={project} initialData={initialData} />
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -62,7 +62,7 @@ export function TaskName({
    const addTask = useTaskStore((state) => state.addTask);
    const updateTask = useTaskStore((state) => state.updateTask)
   const [title, setTitle] = useState(initialData?.title ?? '');
-  const [description, setDescription] = useState(initialData?.title ?? '');
+  const [description, setDescription] = useState(initialData?.description ?? '');
   const [error, setError] = useState<string | null>(null);
 
   function handleSubmit() {

@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
      <Layout >
       <Routes>
-        {/* <Route path="/" element={ children={undefined} }/> */}
+        <Route path="/" element={''}/>
       </Routes>
      </Layout>
      </BrowserRouter>

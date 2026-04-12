@@ -28,7 +28,7 @@ export default function SingleTask({ task }: { task: Task }) {
           project={project}
           open={editOpen}
           onOpenChange={setEditOpen}
-          initalData={task}
+          initialData={task}
         />
       )}
 

@@ -14,7 +14,7 @@ interface ProjectState {
   setActiveProject: (id: string | null) => void;
 }
 
-export const useProjectStore = create<ProjectState>((set, get) => ({
+export const useProjectStore = create<ProjectState>((set) => ({
   projects: initialProjects,
   activeProjectId: null,
   addProject: (project) =>
