@@ -21,6 +21,8 @@ export default function SingleTask({ task }: { task: Task }) {
   const projects = useProjectStore((state) => state.projects);
   const project = projects.find((p) => p.id === activeProjectId);
 
+  const updateTask = useTaskStore((state) => state.updateTask);
+
   return (
     <>
       {project && (
@@ -44,6 +46,12 @@ export default function SingleTask({ task }: { task: Task }) {
         </CardHeader>
         <CardContent>
           <CardDescription>{task.description}</CardDescription>
+          <select value={task.status}
+          onChange={(e) => updateTask(task.id, { status: e.target.value as 'todo' | 'doing' | 'done'})}>
+            <option value='todo'>To Do</option>
+            <option value='doing'>Doing</option>
+            <option value='done'>Done</option>
+          </select>
         </CardContent>
       </Card>
     </>
