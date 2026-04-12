@@ -46,10 +46,7 @@ const activeProject = projects.find((p) => p.id === activeProjectId);
             </MenubarItem>
           </MenubarGroup>
           <MenubarSeparator />
-          <MenubarGroup>
-            <MenubarItem>Share</MenubarItem>
-            <MenubarItem>Print</MenubarItem>
-          </MenubarGroup>
+         
         </MenubarContent>
       </MenubarMenu>
     </Menubar></>
