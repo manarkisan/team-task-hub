@@ -3,15 +3,9 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function ProgressBar() {
-    const percentage = 10;
-    return(
-        
-        <>
-        <div className="max-w-500">
-        <Card>
-            <CircularProgressbar value={percentage} text={`${percentage}%`} />
-        </Card>
-        </div>
-        </>
-    )
+  return (
+    <div style={{ width: '80px', height: '80px' }}>
+      <CircularProgressbar value={percentage} text={`${percentage}%`} />
+    </div>
+  );
 }
